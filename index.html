@@ -509,7 +509,7 @@
         }
 
         input[type="datetime-local"] {
-          width: 88%;
+          width: 100%;
         }
       }
 
@@ -552,15 +552,15 @@
     </style>
   </head>
   <body>
-    <h1>Daily Collection Tracker</h1>
+    <h1>PrintCorner</h1>
     <div class="container">
       <input type="datetime-local" id="customDate" />
       <input type="number" id="amount" placeholder="Enter amount (₹)" />
       <div class="buttons">
-        <button class="btn cash" onclick="addEntry('Cash')">Add Cash</button>
-        <button class="btn online" onclick="addEntry('Online')">
+        <button class="btn cash" onclick="addEntry('Cash')">Add</button>
+        <!-- <button class="btn online" onclick="addEntry('Online')">
           Add Online
-        </button>
+        </button> -->
       </div>
       <div class="filters">
         <label>Filter by Date Range:</label>
@@ -879,12 +879,13 @@
           const online = filtered
             .filter((e) => e.type === "Online")
             .reduce((sum, e) => sum + e.amount, 0);
+          // <p>Cash Total: ₹${formatIndianNumber(cash)}</p>
+          // <p>Online Total: ₹${formatIndianNumber(online)}</p>
           document.getElementById("summary").innerHTML = `
   <p><strong>From:</strong> ${formatDateYMDtoDMY(
     fromDate
   )} <strong>To:</strong> ${formatDateYMDtoDMY(toDate)}</p>
-  <p>Cash Total: ₹${formatIndianNumber(cash)}</p>
-  <p>Online Total: ₹${formatIndianNumber(online)}</p>
+  
   <p><strong>Total:</strong> ₹${formatIndianNumber(cash + online)}</p>
 `;
 
